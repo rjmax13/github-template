@@ -1,44 +1,43 @@
 import React, { useState } from "react";
+import ProductList from "./ProductList";
 import "./App.css";
-import ConferenceEvent from "./ConferenceEvent";
 import AboutUs from "./AboutUs";
 
 function App() {
-  const [showVenue, setShowVenue] = useState(false);
+  const [showProductList, setShowProductList] = useState(false);
 
-  const handleGetStarted = () => {
-    setShowVenue(true);
+  const handleGetStartedClick = () => {
+    setShowProductList(true);
   };
 
   return (
-    <>
-      <header className="first_page">
-        <div className="main_event">
-          <div className="first_page_name_btn">
-            <h1 className="budget_heading">Conference Expense Planner</h1>
-            <p className="budget_sentence">
-              {" "}
-              Plan your next major event with us!
-            </p>
-            <div className="getstarted_btn">
-              <button
-                onClick={() => handleGetStarted()}
-                className="get-started-btn"
-              >
-                Get Started Planning
-              </button>
-            </div>
+    <div className="app-container">
+      <div className={`landing-page ${showProductList ? "fade-out" : ""}`}>
+        <div className="background-image"></div>
+        <div className="content">
+          <div className="landing_content">
+            <h1>Welcome To Paradise Nursery</h1>
+            <div className="divider"></div>
+            <p>Where Green Meets Serenity</p>
+
+            <button
+              className="get-started-button"
+              onClick={handleGetStartedClick}
+            >
+              Get Started
+            </button>
           </div>
-          <div className="aboutus_main">
+          <div className="aboutus_container">
             <AboutUs />
           </div>
         </div>
-      </header>
-
-      <div className={`event-list-container ${showVenue ? "visible" : ""}`}>
-        <ConferenceEvent />
       </div>
-    </>
+      <div
+        className={`product-list-container ${showProductList ? "visible" : ""}`}
+      >
+        <ProductList />
+      </div>
+    </div>
   );
 }
 
